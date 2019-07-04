@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    var singleton = function( fn ){
+        console.log(arguments ,"指向传入的fn函数")
+        var result;
+        return function(){
+            return result || ( result = fn.apply( this, arguments ) ); //保证createMask 传参也可以执行
+        }
+    }
+ 
+    var createMask = singleton( function(){
+        console.log(arguments ,"指向createMask传入的参数")
+    
+        // return document.body.appendChild( document.createElement('div') );
+    
+        var el = document.createElement("div");
+        el.innerText = arguments[0];
+        return document.body.appendChild(el)
+
+    })
+    console.log(createMask("aaa") , "11")
+</script>
+</html>
