@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <p>
+        注意，Symbol 值作为对象属性名时，不能用点运算符。
+    </p>
+</body>
+<script>
+    let mySymbol = Symbol();
+
+    // 第一种写法
+    let a = {};
+    a[mySymbol] = 'Hello!';
+
+    // 第二种写法
+    // let a = {
+    //     [mySymbol]: 'Hello!'
+    // };
+
+    // 第三种写法
+    // let a = {};
+    // Object.defineProperty(a, mySymbol, {    
+    //     value: 'Hello!'
+    // });                                  //对象目标,key,value
+
+    // 以上写法都得到同样结果
+    console.log( a[mySymbol] , a ) // "Hello!"
+</script>
+
+</html>

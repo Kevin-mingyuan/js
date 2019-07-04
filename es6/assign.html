@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <p>Object.assign(target, ...sources)</p>
+    <p> target 目标对象。</p>
+    <p> sources 源对象。</p>
+</body>
+<script>
+    const object1 = {
+        a: 1,
+        b: 2,
+        c: 3
+    };
+    const object2 = {
+        c: 4, 
+        d: 5
+    }
+    const object3 = Object.assign(object1, object2);
+    console.log(object3 , "object3"); // {a: 1, b: 2, c: 4, d: 5}
+    // expected output: 3 5 
+
+    function Prent (name,age){
+        this.name = name;
+        this.age = age;
+    }
+    Prent.prototype.fly = function (){
+        setTimeout(function (){
+            alert("fly")
+        },3000)
+    }
+
+    var p1 = new Prent("Kevin",22);
+    console.log(p1.name , p1.age);
+    p1.fly()
+    // obj1 = { a: 0 , b: { c: 0}};
+    // let obj3 = JSON.parse(JSON.stringify(obj1));
+    // obj1.a = 4;
+    // obj1.b.c = 4;
+    // console.log(obj3);
+    // console.log(JSON.stringify(obj3)); // { a: 0, b: { c: 0}}
+</script>
+</html>

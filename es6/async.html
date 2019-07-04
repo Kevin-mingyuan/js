@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    
+</body>
+<script>
+    var fun1 = function (){
+        console.log("fun1")
+    };
+    var fun2 = function (){
+        console.log("fun2")
+    }
+
+
+    let sleep = function (time) {
+         return new Promise(function (resolve, reject) {
+             setTimeout(function () {
+                 console.log("3ms")
+                 resolve();
+             }, time);
+         })
+     };
+     let sleep2 = function(time){
+         setTimeout(function (){
+             console.log("2ms");
+         },time)
+     }
+    
+
+    let howLongToSleep = async function () {
+        // 在这里使用起来就像同步代码那样直观 只能写异步函数；
+        //执行顺序 先打印 start  然后三秒后打印sleep()函数     然后再两秒后打印sleep2()函数
+        console.time();
+        console.log('start'); //立刻执行
+        await sleep(3000);  //sleep 为一个执行需要耗费 3s 的函数 3秒后执行  
+        await sleep2(2000);  //两秒后执行
+        console.timeEnd('end');
+    };
+    
+    howLongToSleep()
+</script>
+</html>

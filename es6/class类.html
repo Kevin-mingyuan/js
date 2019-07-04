@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <p>
+        所有在类中定义的方法，都会被实例继承 , 
+    </p>
+    <p>
+        加上static关键字，就表示该方法不会被实例继承，
+    </p>
+    <p>
+        而是直接通过类来调用，这就称为“静态方法”。
+    </p>
+    <p>
+        静态方法 不能用实例调用,只能类调用 this指的是类
+    </p>
+</body>
+<script>
+    class Foo {
+        constructor(name) {
+            this.name = name;
+            this.getBind = this.getBind.bind(this); //单独使用方法绑定
+        }
+        getAlert(time) {
+            // console.log(this); //指向Foo
+            console.log("i from getdate time");
+        }
+        
+        getBind(){
+            console.log("需要单独绑定")
+        }
+        static hello(){
+            console.log("hello");
+        }
+    };
+    var foo = new Foo("ming");
+    // console.log(foo.__proto__); //指向Foo内的方法
+    // console.log(Foo.prototype); //原型对象
+
+    // console.log(foo.hasOwnProperty("name")); //true 类属性挂在this上 判断是否存在name属性
+
+
+    function getDate() {
+        var time = new Date().toLocaleString();
+        foo.getAlert(time);
+    }
+    getDate();
+    
+    const { getBind } = foo; //单独提出来使用方法 需要在constructor 内绑定对应得方法
+    getBind();
+
+    Foo.hello();
+
+    // 匿名函数
+    let person = new class {
+        constructor(name) {
+            this.name = name;
+        }
+
+        sayName() {
+            console.log(this.name);
+        }
+    }('张三');
+
+    person.sayName(); // "张三"
+
+
+
+    // 私有属性
+
+
+
+</script>
+
+</html>
