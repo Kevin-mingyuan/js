@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root">test</div>
+</body>
+<script>
+    //通过报错实现判断条件
+    var oRoot = document.getElementById("root");
+    oRoot.onclick = function(){
+        try{
+            $("aa").click(function(){});
+        }catch(err){
+            alert('测试成功');
+            console.log(err);
+        }
+    }
+</script>
+</html>

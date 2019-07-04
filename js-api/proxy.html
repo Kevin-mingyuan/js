@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <p>proxy响应式特性</p>
+    <pre>
+        Proxy对象是在ES6中加入的用来自定义对象的各种内建操作，改写JavaScript引擎行为的默认操作的包装器。
+        在使用Proxy定义了对于某些行为的拦截器后，执行相应的操作时，Proxy会拦截JavaScript引擎内部对于相应行为的底层操作并执行自定义的相应行为的陷阱函数。
+        在陷阱函数运行时，引擎的默认操作终止。
+        在陷阱函数中，我们可以执行Reflect对象中与行为相对应的方法来继续执行引擎默认操作，
+        这样一套机制保证了在拦截引擎默认行为时，执行完成自定义行为后，随时可以结束拦截，继续按照引擎默认行为去执行----当然，也可以没有后续操作。
+    </pre>
+</body>
+<script>
+    //https://www.jianshu.com/p/428ebf9e49df?utm_campaign=hugo&utm_medium=reader_share&utm_content=note&utm_source=weixin-friends
+    //get陷阱拦截读取属性的默认操作  set陷阱拦截设置属性时的默认操作 
+    //Reflect 同样具有对应行为的方法执行默认操作 同样是对定义的data对象操作 const data = {a:1,b:2}
+
+    //设置data对象
+    const data = {
+        a:1,
+        b:2
+    }
+    //new Proxy(目标对象,{...操作})
+    const proxy = new Proxy(data,{
+        //首先是get陷阱
+        get(target,key,receiver){
+            try{
+                console.log('read data property:',key)
+                if(!(key in target)){
+                    throw new Error('属性不存在')
+                }
+                //执行获取属性操作时候 添加watcher的操作
+                //。。。
+                console.log(target,key,receiver);
+                return Reflect.get(target,key,receiver); //执行引擎默认行为
+            }catch(error){
+                console.log(error);
+            }
+        },
+        
+        //set陷阱
+        set(target,key,value,receiver){
+            try{
+                console.log('set data property',key , value)
+                //执行自定义set操作，比如不允许添加代理前不存在的属性
+                // if(!(key in target)){
+                    // throw new Error('只能使用之前存在的属性')
+                // }
+                //继续发布watcher
+                //...
+                //继续执行默认操作
+                console.log(target,key,value,reveiver);
+                return Reflect.set(target, key, value, receiver);
+            }catch(error){  
+                console.log(error)
+            }
+        }
+    });
+
+
+    console.log(proxy , 'before data');
+
+    proxy.a = 11;
+    proxy.b = 22;
+    console.log(proxy, 'after data');
+
+</script>
+</html>

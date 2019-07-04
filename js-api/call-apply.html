@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <pre>
+        call 方法
+        应用于：Function 对象
+        调用一个对象的一个方法，以另一个对象替换当前对象。
+        call([thisObj[,arg1[, arg2[,   [,.argN]]]]])
+        参数：
+        thisObj 
+        可选项。将被用作当前对象的对象。 
+        arg1, arg2, , argN 
+        可选项。将被传递方法参数序列。 
+        说明：
+        call 方法可以用来代替另一个对象调用一个方法。
+        call 方法可将一个函数的对象上下文从初始的上下文改变为由 thisObj 指定的新对象。
+        如果没有提供 thisObj 参数，那么 Global 对象被用作 thisObj。
+
+    </pre>
+    <strong>在一个函数内调用另一个函数的方法</strong>
+</body>
+<script>
+    function Product(name, price) {
+        this.name = name;
+        this.price = price;
+    }
+
+    function Food(name, price) {
+        Product.call(this, name, price); //this.name = name;  this.price = price;  调用 Product的属性
+        this.category = 'food';
+    }
+
+    function Toy(name, price) {
+        Product.apply(this, [name, price]); //this.name    this.price 调用 Product的属性
+        this.category = 'toy';
+    }
+
+    var food = new Food('feta', 5);
+    // console.log(food);
+
+    var toy = new Toy('robot', 40);
+    // console.log(toy);
+
+
+</script>
+<script>
+    // Class1 添加一个name属性 调用obj
+    function Class1(){
+        // console.log(this.arr , ...arguments)
+        this.showTxt = function(){
+            console.log(this.name , "name")
+        }
+        this.showArr = function(){
+            return arr 
+        }
+    }
+    var obj = new Object(); // {}
+
+    obj.name="test1"
+    Class1.call(obj);
+    obj.showTxt();//test1
+
+    var arr = [1,2,3]
+    Class1.apply(this,arr);
+    // console.log(obj.showArr())
+
+
+    // console.log( Class1)
+</script>
+
+<script>
+
+    function add(a,b){
+        console.log(a+b);
+    }
+    function sub(a,b){
+        console.log(a-b);
+        add.call(this,3,1) //在sub内使用add的方法
+    }
+    add.call(sub,3,1);//4
+
+    console.log(sub(1,2))
+</script>
+</html>

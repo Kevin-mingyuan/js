@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input type="file" id="myFile" onchange="upload()" multiple>
+</body>
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script>
+    function upload(){
+        var oMyFile = document.getElementById("myFile");
+        var formData = new FormData(); //参数可以是form表单的id
+        var files = oMyFile.files[0];
+        formData.append("file",files);
+        console.log(formData.get("file"));
+
+        $.ajax({
+            type:'post',
+            url:"http://localhost:3000/data",
+            //ajax2.0可以不用设置请求头，但是jq帮我们自动设置了，这样的话需要我们自己取消掉
+            contentType:false,
+            //取消帮我们格式化数据，是什么就是什么
+            processData:false,
+            //缓存清除 每次请求服务器
+            cache: false,
+            enctype: 'multipart/form-data',    //需要正确设置此项
+            data:formData,
+            success:function(data){
+                console.log(data)
+            },
+            error:function(err){
+                console.log(err);
+            }
+        })
+    }
+</script>
+</html>

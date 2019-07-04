@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head> 
+<body>
+    <input type="file" id="file" value="" onchange="handleUpload()" />
+</body>
+<script>
+    var img = 'png';
+    const bb = img === 'png';
+    console.log(!bb);    
+    if(!bb){
+        console.log('不同'); //true
+    }else{
+        console.log('同一'); //false
+    }
+</script>
+<script>
+    function handleUpload(){
+        var formData = new FormData();
+        var files = document.querySelector('#file').files;
+        var modelName = document.querySelector('#file').value.trim();
+        console.log(files ,modelName)
+
+        if ( files.length === 0 ) {
+            alert("请先选择文件夹");
+            return;
+        } else if ( !modelName ) {
+            alert("请输入合法文件名");
+            return;
+        }
+        
+        for (var i = files.length - 1; i >= 0; i--) {
+            formData.append( "file" + i,  files[i] );
+            //循环添加文件到FormData对象中
+            console.log(formData.get('file'+i) , '123')
+        }
+
+        formData.append('creat_edir', modelName );//添加任意键值对
+        formData.append('files_len', files.length );
+        
+        console.log(formData.__proto__);
+        console.log(formData.get('creat_edir') , 'all');//
+
+        /* //创建ajax发送到后台
+        var xhr = new XMLHttpRequest();
+        xhr.open( "post", "upload.php", true );
+        xhr.onreadystatechange = function() {
+
+            if ( xhr.readyState === 4 ) {
+                if ( Number(xhr.responseText) === 200 ) {
+                    alert( "上传成功" );
+                } else {
+                    console.log( xhr.responseText )
+                }
+            }
+        }
+
+        xhr.send( formData );
+    */
+
+    }
+</script>
+</html>
+

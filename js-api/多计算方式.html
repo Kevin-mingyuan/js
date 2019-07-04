@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .mall-count{
+            padding-top: 10px;
+            padding-bottom: 10px;
+            padding-left: 0;
+            padding-right: 0;
+            vertical-align: middle;
+            line-height: 24px;
+            text-align: center;
+            border-left: none;
+            border-right: none;
+            height: 32px;
+        }
+        .mall_input {
+            float: left;
+            border: 1px solid #ddd;
+            text-align: center;
+            width: 50px;
+            height: 28px;
+            line-height: 28px;
+            font-size: 16px;
+        }
+        .mall_minus{
+            background: #eee;
+            color: #333;
+            width: 25px;
+            text-align: center;
+            cursor: pointer;
+            height: 28px;
+            line-height: 28px;
+            float: left;
+            font-size: 18px;
+        }
+        .mall_add{
+            background: #eee;
+            color: #333;
+            width: 25px;
+            text-align: center;
+            cursor: pointer;
+            height: 28px;
+            line-height: 28px;
+            float: left;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="mall-count">
+            <a class="mall_minus">-</a>
+            <input class="mall_input" type="text" name="amount" value="1" data-left="--">
+            <a class="mall_add">+</a>
+        </div><br/>
+
+        <div class="mall-count">
+            <a class="mall_minus">-</a>
+            <input class="mall_input" type="text" name="amount" value="1" data-left="--">
+            <a class="mall_add">+</a>
+        </div><br/>
+
+        <div class="mall-count">
+            <a class="mall_minus">-</a>
+            <input class="mall_input" type="text" name="amount" value="1" data-left="--">
+            <a class="mall_add">+</a>
+        </div>
+        <div id="div1">123</div>
+    </div>
+</body>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    $('.mall-count').on("click",(e)=>{
+        var ev = e.target;
+        var mallInput = $(e.currentTarget).children("input"); //每个input
+        console.log(ev);
+        if($(ev).hasClass("mall_add")){
+            mallInput.val((i,val)=>{console.log(i , val); return val -0 +1})
+        }
+        if($(ev).hasClass("mall_minus")){
+            if(mallInput.val()> 1){
+                mallInput.val((i, val) => val -1);
+            }
+        }
+        return;
+    });
+    
+    $("#div1").on("click",(e)=>{
+        $('#div1').html((i,val)=> console.log(i , val + new Date().getTime()));
+    })
+</script>
+</html>

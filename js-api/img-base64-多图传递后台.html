@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input type="file" id="upload-file">
+</body>
+<script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+<script>
+    // 用户选择图片进行上传
+    // 上传成功, 后台返回图片的URL
+    // 显示在当前页面上
+    var baseImg = [];
+    document.getElementById("upload-file").addEventListener("change", function(){
+
+        for (var i = 0; i < this.files.length; i++) {
+            var file = this.files[i];
+            var reader = new FileReader();
+            reader.onload = function (ev) {
+                console.log(ev);
+                console.log(ev.target.result , '64646446');
+                baseImg.push(ev.target.result);
+
+                console.log(baseImg , 'arr'); //将每个图片转化为base64 传入数组 post发送到后台
+                createImg(ev.target.result)
+
+                var base64Str = ev.target.result.split(",")[1];
+                //console.log(base64Str)
+
+                // $.ajax({
+                //     url: "reImg.php",
+                //     data: {
+                //         "base64file": base64Str
+                //     },
+                //     type: "post",
+                //     success: function (res) {
+                //         createImg(res);
+                //     }
+                // })
+            }
+            reader.readAsDataURL(file);
+        }
+    });
+
+    function createImg(imgSrc){
+        var theImg = document.createElement("img");
+        theImg.src = imgSrc;
+        document.body.appendChild(theImg);
+        theImg.className = "imgC";
+    }
+</script>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            padding: 5px;
+        }
+        #mybtn {
+            width: 100px;
+            height: 30px;
+            font-size: 18px;
+            background-color: #00a0e9;
+            border: none;
+            text-align: center;
+            color: #FFF;
+        }
+    </style>
+</head>
+<body>
+        <div>
+            <input type="file" name="myfile" id="myfile" value=""/>
+        </div>
+        <div id="myfileName">
+        </div>
+</body>
+<script src="https://cdn.bootcss.com/jquery/3.4.0/jquery.min.js"></script>
+<script>
+    var file = "";
+    var fileName = "";
+    var fileExt = "";
+    $("#myfile").change(function () {
+        //获取文件的value值
+        file = $("#myfile").val(); //本地路径名字 磁盘\文件夹\文件名字
+        //获取文件名+扩展名
+        fileName = file.split("\\").pop(); //文件名字
+        //获取文件名
+        fileName = fileName.substring(0, fileName.lastIndexOf("."));
+        //获取文件的扩展名
+        fileExt = file.substr(file.indexOf("."));
+        //清空DIV容器内容
+        $("#myfileName").html("");
+        $("#myfileName").append(`<p style='color: red'>文件名：${fileName}${fileExt}</p>`);
+        // $("#div").append("<p style='color: red'>扩展名"+fileExt+"</p>");
+        //转化为base64格式
+        var file = this.files[0];                
+        // 确认选择的文件是图片                
+        if(file.type.indexOf("image") == 0) {
+            var reader = new FileReader();
+            reader.readAsDataURL(file);                    
+            reader.onload = function(e) {
+                // 图片base64化
+                var newUrl = this.result;
+                // preview.style.backgroundImage = 'url(' + newUrl + ')';
+                console.log(newUrl);
+            };
+        }
+    })
+</script>
+</html>
+
+
+

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    let arr = [1,13,24,11,11,14,1,2]
+    let unique = function(arr) {  
+        let hashTable = {};
+        let data = [];
+        // let l = arr.length
+        for(let i=0;i<arr.length;i++) {
+            if(!hashTable[arr[i]]) {        //判断对象内循环的数组元素是否为空
+                hashTable[arr[i]] = true;   //设置添加到空对象number：true
+                console.log(hashTable)
+                data.push(arr[i]);
+            }
+        }
+        return data;
+    }
+    console.log(unique(arr));
+</script>
+<script>
+    let arr1 = [1,1,2,3,4,5,6,7,7,6,9];
+    let quchong = function(arr){
+        let obj = {};
+        let newArr = [];
+
+        for(let j=0; j < arr1.length;j++){
+            if(obj[arr1[j]] === undefined){
+                obj[arr1[j]] = 1; 
+                newArr.push(arr1[j]);
+            }else{
+                obj[arr1[j]]++;
+            }
+        }
+        return {newArr,obj}; //return one obj
+    }
+
+    console.log(quchong(arr1).newArr , quchong(arr1).obj);
+</script>
+<script>
+    function swap(a , b) {  
+        b = b - a;
+        console.log(a,b)
+        a = a + b;
+        console.log(a,b)
+        b = a - b;
+        console.log(a,b)
+        return [a,b];
+    }
+    console.log(swap(222,66))
+</script>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="text" />
+</body>
+<script>
+    //过滤 arr.filter( function(元素,下标,数组){return ...})
+    function isBigEnough(element) {
+        return element >= 10;
+    }
+    var filtered = [12, 5, 8, 130, 44].filter(isBigEnough);
+    console.log(filtered);
+</script>
+<script>
+    //判断number大小
+    var arr = [1,2,3,4,5,56];
+    let arr1 = arr.filter(function(item,i,arr){
+        if(item > 2){
+            return item;
+        }
+    });
+    console.log(arr1,'arr1');
+
+    let arr3 = [1,2,3,5,7,9,10,123,22,56,89,0,99];
+    function select(item,i,arr){
+        if(item > 1){
+            return item +'大于1'
+        }
+    }
+    let arr4 = arr3.filter(select);
+    console.log(arr4 , 'arr4');
+</script>
+<script>
+    //筛选文字
+    var text = ['apple','banana','orange','water','winter','kevin'];
+    function filterText(query){
+        return text.filter((item)=>{
+            return item.toLowerCase().includes(query.toLowerCase());
+        })
+    }
+    console.log(filterText('ke'));
+</script>
+
+</html>
