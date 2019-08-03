@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>promise</title>
+	</head>
+	<body>
+		<p>
+			Promise最大的好处是在异步执行的流程中，
+			把执行代码和处理结果的代码清晰地分离了：
+		</p>
+	</body>
+	<script type="text/javascript">
+		//声明随机数变量 判断成功与否
+		let randomNum = Math.random() * 2;
+		console.log(randomNum);
+		
+		//promise 只针对于处理结果 是否成功与失败 不对其中的业务逻辑做操作
+		function test(resolve,reject){
+			if(randomNum >= 1){
+				resolve('success');
+			}else if(randomNum < 1){
+				reject('error')
+			}
+		}
+		
+		let p1 = new Promise(test);
+		
+		p1.then(res => {
+			console.log(res , 'state');
+		}).catch(err => {
+			console.log(err , 'err');
+		})
+	</script>
+</html>

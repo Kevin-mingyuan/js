@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title></title>
+	</head>
+	<body>
+		<p>继承new 子类 必定走父类的constructor再走子类的constructor</p>
+	</body>
+	<script type="text/javascript">
+		//父类是公共属性和方法;
+		class Parent{
+			constructor(name,age){
+				this.name = name;
+				this.age = age;
+				
+				// console.log(this.name ,this.age, 'parent');
+				this.run = this.run.bind(this);
+				this.fly = this.fly.bind(this);
+				this.fly2 = this.fly2.bind(this);
+			}
+			
+			fly(){
+				//处理属性 或者 定义的方法
+				return `fly-lala -- ${this.name}`;
+			}
+			
+			fly2(){
+				console.log('fly222');
+			}
+			
+			run(){
+				console.log(this,'run shili fangfa');
+				this.fly2();
+			}
+			// super(props);
+			// console.log(props);
+		};
+		
+		//子类是私有属性和方法;
+		class Child extends Parent{
+			//继承父类的属性
+			constructor(name,age){
+				super(name,age);
+				// console.log(this.name,'child');
+				this.haha = this.haha.bind(this);
+			}
+			
+			haha(){
+				console.log(this, 'child');
+			}
+		}
+		
+		// let p = new Parent('kevin',20);
+		let c = new Child('kevin',20);
+		//继承父类的方法
+		// console.log(c.fly() , 'flyyyyyy');
+		//调用实例继承的父类方法
+		c.run();
+	</script>
+</html>
