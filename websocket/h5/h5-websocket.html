@@ -42,21 +42,25 @@
 // 		};
 		console.log(socket);
 		
-		btn.onclick = ()=>{
+		// btn.onclick = ()=>{
 			console.log(socket);
 			
 			//注册打开事件
 			socket.addEventListener('open', function (event) {
 				console.log(ipt.value , '1232')
-				socket.send('ipt.value');
+				
+				btn.onclick = ()=>{
+					socket.send(ipt.value);
+					ipt.value = "";
+				}
 			});
 			
 			//注册相应服务器信息事件
 			socket.addEventListener('message',(event)=>{
 				console.log(event)
-				box.innerText += event.data;
+				box.innerHTML += `${event.data} <br />`;
 			})
-		};
+		// };
 		
 		
 	</script>
