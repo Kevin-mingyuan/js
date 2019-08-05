@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>h5-websocket</title>
+		<style type="text/css">
+			.box{
+				width: 200px;
+				height: 200px;
+				border: 1px solid #00A0E9;
+			}
+		</style>
+	</head>
+	<body>
+		<input class="ipt" type="text" value="" />
+		<button class="btn" type="button">send</button>
+		<div class="box">
+			
+		</div>
+	</body>
+	<script type="text/javascript">
+		let ipt = document.getElementsByClassName('ipt')[0];
+		let btn = document.getElementsByClassName('btn')[0];
+		let box = document.getElementsByClassName('box')[0];
+		
+		// 打开一个WebSocket:
+		var socket = new WebSocket('ws://localhost:3000/test');
+		
+// 		function socketSend(socket){
+// 			//注册打开事件
+// 			socket.addEventListener('open', function (event) {
+// 				console.log(ipt.value , '1232')
+// 				socket.send(ipt.value);
+// 			});
+// 			
+// 			//注册相应服务器信息事件
+// 			socket.addEventListener('message',(event)=>{
+// 				console.log(event)
+// 				box.innerText += event.data;
+// 			})
+// 		};
+		console.log(socket);
+		
+		btn.onclick = ()=>{
+			console.log(socket);
+			
+			//注册打开事件
+			socket.addEventListener('open', function (event) {
+				console.log(ipt.value , '1232')
+				socket.send('ipt.value');
+			});
+			
+			//注册相应服务器信息事件
+			socket.addEventListener('message',(event)=>{
+				console.log(event)
+				box.innerText += event.data;
+			})
+		};
+		
+		
+	</script>
+</html>
