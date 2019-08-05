@@ -26,41 +26,23 @@
 		
 		// 打开一个WebSocket:
 		var socket = new WebSocket('ws://localhost:3000/test');
-		
-// 		function socketSend(socket){
-// 			//注册打开事件
-// 			socket.addEventListener('open', function (event) {
-// 				console.log(ipt.value , '1232')
-// 				socket.send(ipt.value);
-// 			});
-// 			
-// 			//注册相应服务器信息事件
-// 			socket.addEventListener('message',(event)=>{
-// 				console.log(event)
-// 				box.innerText += event.data;
-// 			})
-// 		};
-		console.log(socket);
-		
-		// btn.onclick = ()=>{
-			console.log(socket);
 			
-			//注册打开事件
-			socket.addEventListener('open', function (event) {
-				console.log(ipt.value , '1232')
-				
-				btn.onclick = ()=>{
-					socket.send(ipt.value);
-					ipt.value = "";
-				}
-			});
+		//注册打开事件
+		socket.addEventListener('open', function (event) {
+			console.log(ipt.value , '1232')
 			
-			//注册相应服务器信息事件
-			socket.addEventListener('message',(event)=>{
-				console.log(event)
-				box.innerHTML += `${event.data} <br />`;
-			})
-		// };
+			//点击触发发送到后台
+			btn.onclick = ()=>{
+				socket.send(ipt.value);
+				ipt.value = "";
+			}
+		});
+		
+		//注册相应服务器信息事件
+		socket.addEventListener('message',(event)=>{
+			console.log(event)
+			box.innerHTML += `${event.data} <br />`;
+		})
 		
 		
 	</script>
