@@ -1,0 +1,16 @@
+$('.getTc').on('click',()=>{
+	$.ajax({
+		type:'GET',
+		url:'https://restapi.amap.com/v3/weather/weatherInfo',
+		data:{
+			key:'a510951c888082e50ad6c008fe557eec',
+			city:'410481',
+		},
+		success(data){
+			console.log(data);
+		},
+		err(err){
+			console.log(err);
+		}
+	})
+});

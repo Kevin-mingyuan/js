@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>super 继承</title>
+	</head>
+	<body>
+
+	</body>
+	<script type="text/javascript">
+		class Foo {
+			constructor(name,age){
+				this.name = name;
+				this.age = age;
+			}
+			static classMethod() {
+				return 'hello';
+			}
+		}
+
+		class Bar extends Foo {
+			constructor(name,age){
+				super(name,age);
+				console.log(name , '12331')
+			}
+			static classMethod() {
+
+				return super.classMethod() + ', too';
+			}
+		}
+		
+		let b = new Bar('kevin',20);
+		console.log(b);
+		console.log(b.name)
+		 console.log(Bar.classMethod()); // "hello, too"
+	</script>
+</html>

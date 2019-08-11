@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>maopao</title>
+	</head>
+	<body>
+		
+	</body>
+	<script type="text/javascript">
+		let arr = [3,1,4,99,2];
+		
+		for(var i = 0; i < arr.length-1; i++){
+			var temp = "";
+			for(var j=0; j < arr.length-i-1; j++){
+				if(arr[j] > arr[j+1]){ //大的值放入暂时变量内交换位置
+					temp = arr[j];
+					arr[j] = arr[j+1];
+					arr[j+1] = temp;
+				}
+			}
+		}
+		console.log(arr)
+	</script>
+</html>
