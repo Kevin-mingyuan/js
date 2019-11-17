@@ -20,7 +20,14 @@
 					arr[j+1] = temp;
 				}
 			}
-		}
-		console.log(arr)
+		};
+		console.log(arr);
+		
+		let arr1 = [{ a:1, b:2, c:3 },{ a:1, b:2, c:3 },{ a:1, b:2, c:3 }];
+		console.log(...arr1);
+		let obj = { a:1, b:2, c:3 };
+		let newArr1 = Object.keys(obj);
+		let newArr2 = Object.values(obj);
+		console.log(newArr1,newArr2);
 	</script>
 </html>
