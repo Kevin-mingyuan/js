@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+        }
+        body{
+            height: 2000px;
+        }
+        .parent{
+            position: relative;
+            top: 100px;
+            left: 200px;
+            width: 300px;
+            height: 300px;
+            background-color: #aaaaaa;
+        }
+        .child{
+            position: absolute;
+            left: 60px;
+            top: 50px;
+            background-color: blue;
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <ul id="ul">
+        文本节点
+        <li class="li1"></li>
+        <li><div id="app" name="root" aa="cc"><span>123</span></div></li>
+        <li></li>
+    </ul>
+    <input type="text" data-test="test" />
+    <div class="parent">
+        <div class="child">
+
+        </div>
+    </div>
+</body>
+<script src="./封装兼容childNodes.js"></script>
+<script>
+    var div = document.getElementById('app');
+    var ul = document.getElementById('ul');
+    var li1 = document.getElementsByClassName('li1')[0];
+    var ipt = document.getElementsByTagName('input')[0];
+    // console.log(ul.childNodes , 'ul.childNodes');
+    // console.log(elemChildren(ul),'elemChildren');
+    // console.log(newElemChildren(ul),'newElemChildren');
+    // console.log(objElemChildren(ul),'objElemChildren');
+
+
+    function Parent(){
+
+    }
+    Parent.prototype.fly = function(){
+        console.log('parent fly lalala');
+    }
+
+    var p = new Parent();
+
+    function Child(){
+
+    }
+    // Child.prototype = p; //实例继承
+    Child.prototype = Parent.prototype; //原型继承
+
+    var c = new Child();
+
+    console.log(c.fly());
+
+    var dom = null;
+    dom = document.createElement("div");
+    dom.innerHTML += "<span>12332132</span>"
+    ul.appendChild(dom);
+    ul.removeChild(li1);
+
+    for(var i = 0; i < 5; i++){
+        var li = document.createElement('li');
+        var span = document.createElement('span');
+
+        li.innerHTML = 'hello' + i + '<span> ---- </span>';
+        span.innerHTML = 'world' + i;
+
+        ul.appendChild(li);
+        li.appendChild(span);
+    }
+    ipt.setAttribute('data-test' , '21321213');
+    console.log(ipt.dataset , 'h5 attr');
+</script>
+<script src="封装兼容获取滚动条滚动距离.js"></script>
+<script src="./封装获取div距离窗口左边和上边的距离.js"></script>
+<script>
+    var p = document.getElementsByClassName("parent")[0];
+    var c = document.getElementsByClassName("child")[0];
+</script>
+<script src="./封装获取元素的宽高.js"></script>
+</html>

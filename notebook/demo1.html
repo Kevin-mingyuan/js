@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        html,body{
+            width: 100%;
+            height: 100%;
+        }
+        #app{
+            width: 100%;
+            height: 100%;
+            border-top: 1px solid red;
+            background: blue;
+        }
+    </style>
+</head>
+<body>
+    <div id="app"></div>    
+</body>
+<script>
+    let oApp = document.getElementById('app');
+    console.log(oApp);
+    oApp.addEventListener("mousedown",function(e){
+        let downOffsetY = e.offsetY;
+        document.onmousemove = function(e){
+            oApp.style.transform = `translate3d(0px, ${e.offsetY-downOffsetY}px, 0px)`;
+        };
+    },false)
+    
+    oApp.addEventListener("mouseup",function(e){
+        document.onmousemove = null;
+        oApp.style.transform = `translate3d(0px, 0px, 0px)`;
+    },false)
+    
+</script>
+</html>
