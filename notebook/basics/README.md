@@ -49,12 +49,14 @@
     }else{
         cosnole.log('小于0')
     }
+
     var str = num > 0 ? ( 
                             num > 3 ? console.log("大于3") 
                                     : console.log("小于3")
                         )
                       : console.log("小于0");
 
+---------------------------------------------------------------------
     if(num < 0){
         cosnole.log('小于0')
     }else{
@@ -70,6 +72,7 @@
                                   : console.log("小于3") 
                         );
 
+----------------------------------------------------------------------------
     if(num > 3 && num < 5){
         console.log('num > 3')
     }else if(num <3){
@@ -358,3 +361,31 @@
     判断对象的key是否存在
     var obj = { a:1 };
     console.log('b' in obj);//false
+
+### instanceof 判断数据类型 只要原型链父级都是true
+    他的原型链上有的都返回true
+    function Test(){
+
+    }
+    var t = new Test();
+    console.log(t instanceof Test);//true
+    console.log(t instanceof Object);//true
+
+### call apply 
+    改变this执行 借用其他函数上挂载的this属性及方法
+    call 参数逗号隔开
+    apply 参数放入数组
+
+### bind
+    bind 改变this指向后 返回的是一个函数并不立即执行
+    var p1 = { name:'kevin',hobby:'play', play:function(sex){return this.name + '...' +  sex}}; 
+    var p2 = { name:'ming', hobby:'work' };
+    var fn = p1.play.bind(p2,'man'); //方法play传参
+    console.log( fn() );
+
+### 纯函数
+    相同的输入得到的相同的输出,不依赖且不影响外部环境也不产生任何副作用。
+    输出完全取决于输入
+    副作用：只要跟函数外部环境发生了交互就是副作用(发生数据请求 改变数据 console.log DOM操作 数据的存取cookie... )
+
+    
