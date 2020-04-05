@@ -9,7 +9,7 @@
 
 	</body>
 	<script type="text/javascript">
-		class Foo {
+		class Parent {
 			constructor(name,age){
 				this.name = name;
 				this.age = age;
@@ -19,20 +19,20 @@
 			}
 		}
 
-		class Bar extends Foo {
+		class Child extends Parent {
 			constructor(name,age){
 				super(name,age);
-				console.log(name , '12331')
+				console.log('first childs',name);
+				console.log(this)
 			}
 			static classMethod() {
-
 				return super.classMethod() + ', too';
 			}
 		}
 		
-		let b = new Bar('kevin',20);
+		let b = new Child('kevin',20);
 		console.log(b);
 		console.log(b.name)
-		 console.log(Bar.classMethod()); // "hello, too"
+		 console.log(Child.classMethod()); // "hello, too"
 	</script>
 </html>
